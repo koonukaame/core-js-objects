@@ -50,8 +50,12 @@ function mergeObjects(/* objects */) {
  *    removeProperties({name: 'John', age: 30, city: 'New York'}, ['age']) => {name: 'John', city: 'New York'}
  *
  */
-function removeProperties(/* obj, keys */) {
-  throw new Error('Not implemented');
+function removeProperties(obj, keys) {
+  const newObj = structuredClone(obj);
+  for (let i = 0; i < keys.length; i += 1) {
+    delete newObj[keys[i]];
+  }
+  return newObj;
 }
 
 /**
