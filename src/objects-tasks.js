@@ -121,8 +121,20 @@ function makeImmutable(obj) {
  *    makeWord({ a: [0, 1], b: [2, 3], c: [4, 5] }) => 'aabbcc'
  *    makeWord({ H:[0], e: [1], l: [2, 3, 8], o: [4, 6], W:[5], r:[7], d:[9]}) => 'HelloWorld'
  */
-function makeWord(/* lettersObject */) {
-  throw new Error('Not implemented');
+function makeWord(lettersObject) {
+  const str = [];
+  const totalLetters = Object.values(lettersObject).reduce(
+    (acc, arr) => acc + arr.length,
+    0
+  );
+  for (let i = 0; i < totalLetters; i += 1) {
+    Object.entries(lettersObject).forEach(([letter, indices]) => {
+      if (indices.includes(i)) {
+        str.push(letter);
+      }
+    });
+  }
+  return str.join('');
 }
 
 /**
